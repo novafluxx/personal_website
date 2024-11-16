@@ -1,0 +1,26 @@
+@inherits LayoutComponentBase
+
+<div class="page-container">
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="nav-brand">Justin High</div>
+            <NavMenu />
+        </nav>
+    </header>
+
+    <main class="main-content">
+        @Body
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <p>&copy; @DateTime.Now.Year Justin High. All rights reserved.</p>
+        </div>
+    </footer>
+</div>
+
+<div id="blazor-error-ui">
+    An unhandled error has occurred.
+    <a href="" class="reload">Reload</a>
+    <a class="dismiss">🗙</a>
+</div>
