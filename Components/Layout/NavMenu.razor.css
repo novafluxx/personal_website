@@ -53,7 +53,7 @@
 }
 
 .nav-link {
-    color: var(--text-color);
+    color: #495057;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
@@ -63,17 +63,22 @@
 }
 
 .nav-link:hover {
-    color: var(--accent-color);
+    color: #1b6ec2;
 }
 
 .nav-link.active {
-    color: var(--accent-color);
+    color: #1b6ec2;
 }
 
-/* Mobile styles */
+.nav-link i {
+    font-size: 1rem;
+}
+
 @media (max-width: 768px) {
     .nav-links {
+        flex-direction: column;
         gap: 1rem;
+        margin-top: 1rem;
     }
 }
 
