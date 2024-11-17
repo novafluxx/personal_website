@@ -1,17 +1,32 @@
-<div class="nav-links">
-    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-        <i class="fas fa-home"></i> Home
-    </NavLink>
-    <NavLink class="nav-link" href="experience">
-        <i class="fas fa-briefcase"></i> Experience
-    </NavLink>
-    <NavLink class="nav-link" href="skills">
-        <i class="fas fa-code"></i> Skills
-    </NavLink>
-    <NavLink class="nav-link" href="aviation">
-        <i class="fas fa-plane"></i> Aviation
-    </NavLink>
-    <NavLink class="nav-link" href="contact">
-        <i class="fas fa-envelope"></i> Contact
-    </NavLink>
+@code {
+    private bool isMenuOpen = false;
+
+    private void ToggleMenu()
+    {
+        isMenuOpen = !isMenuOpen;
+    }
+}
+
+<div class="nav-container">
+    <div class="mobile-menu-toggle" @onclick="ToggleMenu">
+        <i class="fas fa-bars"></i>
+    </div>
+
+    <div class="nav-links @(isMenuOpen ? "menu-open" : "")">
+        <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+            <i class="fas fa-home"></i> Home
+        </NavLink>
+        <NavLink class="nav-link" href="experience">
+            <i class="fas fa-briefcase"></i> Experience
+        </NavLink>
+        <NavLink class="nav-link" href="skills">
+            <i class="fas fa-code"></i> Skills
+        </NavLink>
+        <NavLink class="nav-link" href="aviation">
+            <i class="fas fa-plane"></i> Aviation
+        </NavLink>
+        <NavLink class="nav-link" href="contact">
+            <i class="fas fa-envelope"></i> Contact
+        </NavLink>
+    </div>
 </div>
