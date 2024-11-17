@@ -5,6 +5,11 @@
     {
         isMenuOpen = !isMenuOpen;
     }
+
+    private void CloseMenu()
+    {
+        isMenuOpen = false;
+    }
 }
 
 <div class="nav-container">
@@ -13,19 +18,19 @@
     </div>
 
     <div class="nav-links @(isMenuOpen ? "menu-open" : "")">
-        <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+        <NavLink class="nav-link" href="" Match="NavLinkMatch.All" @onclick="CloseMenu">
             <i class="fas fa-home"></i> Home
         </NavLink>
-        <NavLink class="nav-link" href="experience">
+        <NavLink class="nav-link" href="experience" @onclick="CloseMenu">
             <i class="fas fa-briefcase"></i> Experience
         </NavLink>
-        <NavLink class="nav-link" href="skills">
+        <NavLink class="nav-link" href="skills" @onclick="CloseMenu">
             <i class="fas fa-code"></i> Skills
         </NavLink>
-        <NavLink class="nav-link" href="aviation">
+        <NavLink class="nav-link" href="aviation" @onclick="CloseMenu">
             <i class="fas fa-plane"></i> Aviation
         </NavLink>
-        <NavLink class="nav-link" href="contact">
+        <NavLink class="nav-link" href="contact" @onclick="CloseMenu">
             <i class="fas fa-envelope"></i> Contact
         </NavLink>
     </div>
