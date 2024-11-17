@@ -7,6 +7,7 @@
     <RunAOTCompilation>true</RunAOTCompilation>
     <WasmEnableSIMD>true</WasmEnableSIMD>
     <WasmEnableExceptionHandling>true</WasmEnableExceptionHandling>
+    <RootNamespace>personal_website</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
