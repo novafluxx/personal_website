@@ -17,12 +17,14 @@
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
+    position: relative;
 }
 
 .nav-brand {
     font-size: 1.5rem;
     font-weight: bold;
     color: #1b6ec2;
+    white-space: nowrap;
 }
 
 .main-content {
@@ -49,12 +51,16 @@
 
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        text-align: center;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+        padding: 0 0.5rem;
     }
 
     .nav-brand {
-        margin-bottom: 1rem;
+        margin-bottom: 0;
+        font-size: 1.25rem;
     }
 }
 
