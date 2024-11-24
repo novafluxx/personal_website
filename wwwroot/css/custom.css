@@ -1,3 +1,4 @@
+/* Base styles */
 :root {
     --primary-color: #2c3e50;
     --secondary-color: #3498db;
@@ -14,6 +15,7 @@
     background-color: var(--background-color);
 }
 
+/* Header and Navigation */
 .main-header {
     background-color: white;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -28,10 +30,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2rem;
     height: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 2rem;
 }
 
 .nav-brand {
@@ -55,7 +57,8 @@
     gap: 0.5rem;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link:focus {
     color: var(--secondary-color);
 }
 
@@ -63,16 +66,17 @@
     color: var(--accent-color);
 }
 
+/* Main Content */
 .main-content {
     margin-top: var(--header-height);
     flex: 1;
     padding: 2rem;
     max-width: 1200px;
     width: 100%;
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline: auto;
 }
 
+/* Footer */
 .main-footer {
     background-color: var(--primary-color);
     color: white;
@@ -87,18 +91,7 @@
     padding: 0 2rem;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .navbar {
-        padding: 0 1rem;
-    }
-
-    .nav-links {
-        gap: 1rem;
-    }
-}
-
-/* Aviation Page Styles */
+/* Aviation Page */
 .aviation-hero {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1464037866556-6812c9d1c72e');
     background-size: cover;
@@ -110,21 +103,16 @@
 }
 
 .hero-content h1 {
-    font-size: 3rem;
+    font-size: clamp(2rem, 5vw, 3rem);
     margin-bottom: 1rem;
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
     opacity: 0.9;
 }
 
-.aviation-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
+/* Cards and Sections */
 .section {
     margin-bottom: 4rem;
 }
@@ -135,14 +123,18 @@
     text-align: center;
 }
 
-.experience-card {
+.experience-card,
+.timeline-item {
     background: white;
     border-radius: 8px;
     padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.experience-card {
     display: flex;
     align-items: center;
     gap: 2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .card-icon {
@@ -150,22 +142,35 @@
     color: var(--accent-color);
 }
 
-.card-content h3 {
+.card-content h3,
+.skill-card h3 {
     color: var(--secondary-color);
     margin-bottom: 1rem;
 }
 
+/* Experience Timeline */
+.experience-timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline-item {
+    margin-bottom: 2rem;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
+    .navbar {
+        padding: 0 1rem;
+    }
+
+    .nav-links {
+        gap: 1rem;
+    }
+
     .aviation-hero {
         padding: 4rem 1rem;
-    }
-
-    .hero-content h1 {
-        font-size: 2rem;
-    }
-
-    .hero-subtitle {
-        font-size: 1.2rem;
     }
 
     .experience-card {
@@ -319,18 +324,18 @@
 }
 
 .hero-content h1 {
-    font-size: 3rem;
+    font-size: clamp(2rem, 5vw, 3rem);
     margin-bottom: 0.5rem;
 }
 
 .hero-content h2 {
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
     font-weight: 400;
     margin-bottom: 1rem;
 }
 
 .hero-subtitle {
-    font-size: 1.2rem;
+    font-size: clamp(1rem, 2vw, 1.2rem);
     opacity: 0.9;
 }
 
@@ -372,15 +377,15 @@
 
 @media (max-width: 768px) {
     .hero-content h1 {
-        font-size: 2rem;
+        font-size: clamp(1.5rem, 3vw, 2rem);
     }
 
     .hero-content h2 {
-        font-size: 1.2rem;
+        font-size: clamp(1rem, 2vw, 1.2rem);
     }
 
     .hero-subtitle {
-        font-size: 1rem;
+        font-size: clamp(0.8rem, 1.5vw, 1rem);
     }
 }
 
