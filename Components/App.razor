@@ -1,6 +1,7 @@
 @using personal_website.Components.Layout
+@using Microsoft.AspNetCore.Components.WebAssembly.Services
 
-<Router AppAssembly="@typeof(Program).Assembly">
+<Router AppAssembly="@typeof(Program).Assembly" OnNavigateAsync="@OnNavigateAsync">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
@@ -12,3 +13,34 @@
         </LayoutView>
     </NotFound>
 </Router>
+
+@code {
+    [Inject]
+    private LazyAssemblyLoader? AssemblyLoader { get; set; }
+
+    private async Task OnNavigateAsync(NavigationContext args)
+    {
+        if (AssemblyLoader == null)
+        {
+            Console.WriteLine("AssemblyLoader is not initialized");
+            return;
+        }
+
+        try
+        {
+            // Load assemblies based on route
+            if (args.Path.StartsWith("aviation"))
+            {
+                await AssemblyLoader.LoadAssembliesAsync(new[] { "Aviation.dll" });
+            }
+            else if (args.Path.StartsWith("experience"))
+            {
+                await AssemblyLoader.LoadAssembliesAsync(new[] { "Experience.dll" });
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading assembly: {ex.Message}");
+        }
+    }
+}
