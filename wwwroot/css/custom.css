@@ -112,17 +112,19 @@
 
 .hero-section.hero-section--aviation {
     background: none;
+    position: relative;
+    overflow: hidden;
 }
 
-.hero-section.hero-section--aviation::before {
-    content: '';
+.aviation-background {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                url('/images/flight-line2.jpeg');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                     url('/images/flight-line2.jpeg');
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     z-index: 0;
