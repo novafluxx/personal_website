@@ -91,25 +91,74 @@
     padding: 0 2rem;
 }
 
-/* Aviation Page */
-.aviation-hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1464037866556-6812c9d1c72e');
+/* Hero Sections */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    height: 400px;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top: -2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-section.hero-section--aviation {
+    background: none;
+}
+
+.hero-section.hero-section--aviation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('/images/flight-line2.JPEG');
     background-size: cover;
     background-position: center;
-    color: white;
-    padding: 6rem 2rem;
-    text-align: center;
-    margin: -2rem -2rem 2rem -2rem;
+    z-index: 0;
+}
+
+.hero-content {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
 }
 
 .hero-content h1 {
     font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 0.5rem;
+}
+
+.hero-content h2 {
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    font-weight: 400;
     margin-bottom: 1rem;
 }
 
-.hero-subtitle {
-    font-size: clamp(1.2rem, 3vw, 1.5rem);
+.hero-content h2.hero-subtitle {
+    font-size: clamp(1rem, 2vw, 1.2rem);
     opacity: 0.9;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        height: 300px;
+    }
 }
 
 /* Cards and Sections */
@@ -167,10 +216,6 @@
 
     .nav-links {
         gap: 1rem;
-    }
-
-    .aviation-hero {
-        padding: 4rem 1rem;
     }
 
     .experience-card {
@@ -310,39 +355,6 @@
 }
 
 /* Home Page Styles */
-.hero-section {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: white;
-    padding: 4rem 2rem;
-    text-align: center;
-    margin: -2rem -2rem 2rem -2rem;
-}
-
-.hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.hero-content h1 {
-    font-size: clamp(2rem, 5vw, 3rem);
-    margin-bottom: 0.5rem;
-}
-
-.hero-content h2 {
-    font-size: clamp(1.2rem, 3vw, 1.5rem);
-    font-weight: 400;
-    margin-bottom: 1rem;
-}
-
-.hero-subtitle {
-    font-size: clamp(1rem, 2vw, 1.2rem);
-    opacity: 0.9;
-}
-
-.section {
-    padding: 4rem 0;
-}
-
 .container {
     max-width: 1200px;
     margin: 0 auto;
