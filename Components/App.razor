@@ -1,5 +1,7 @@
 @using personal_website.Components.Layout
 @using Microsoft.AspNetCore.Components.WebAssembly.Services
+@using personal_website.Services
+@inject SecurityService SecurityService
 
 <Router AppAssembly="@typeof(Program).Assembly" OnNavigateAsync="@OnNavigateAsync">
     <Found Context="routeData">
@@ -26,14 +28,24 @@
             return;
         }
 
+        // Sanitize navigation path
+        var sanitizedPath = SecurityService.SanitizeInput(args.Path);
+
         try
         {
+            // Validate URL before navigation
+            if (!SecurityService.IsUrlSafe(sanitizedPath))
+            {
+                Console.WriteLine($"Potentially unsafe navigation attempt: {sanitizedPath}");
+                return;
+            }
+
             // Load assemblies based on route
-            if (args.Path.StartsWith("aviation"))
+            if (sanitizedPath.StartsWith("aviation"))
             {
                 await AssemblyLoader.LoadAssembliesAsync(new[] { "Aviation.dll" });
             }
-            else if (args.Path.StartsWith("experience"))
+            else if (sanitizedPath.StartsWith("experience"))
             {
                 await AssemblyLoader.LoadAssembliesAsync(new[] { "Experience.dll" });
             }
