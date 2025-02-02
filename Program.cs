@@ -8,8 +8,8 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-var baseAddress = builder.HostEnvironment.BaseAddress;
-var httpClient = new HttpClient { BaseAddress = new Uri(baseAddress) };
+var hostBaseAddress = builder.HostEnvironment.BaseAddress;
+var httpClient = new HttpClient { BaseAddress = new Uri(hostBaseAddress) };
 builder.Services.AddScoped(sp => httpClient);
 
 // Add Security Service

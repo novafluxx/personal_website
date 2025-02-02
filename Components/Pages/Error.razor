@@ -6,10 +6,10 @@
 <h1 class="text-danger">Error.</h1>
 <h2 class="text-danger">An error occurred while processing your request.</h2>
 
-@if (ShowRequestId)
+@if (ShouldDisplayRequestId)
 {
     <p>
-        <strong>Request ID:</strong> <code>@RequestId</code>
+        <strong>Request ID:</strong> <code>@ErrorRequestId</code>
     </p>
 }
 
@@ -25,9 +25,9 @@
 </p>
 
 @code {
-    private string? RequestId { get; set; }
-    private bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+    private string? ErrorRequestId { get; set; }
+    private bool ShouldDisplayRequestId => !string.IsNullOrEmpty(ErrorRequestId);
 
     protected override void OnInitialized() =>
-        RequestId = Activity.Current?.Id;
+        ErrorRequestId = Activity.Current?.Id;
 }

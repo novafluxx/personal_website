@@ -41,13 +41,13 @@ namespace personal_website.Services
         /// <returns>CSP header value</returns>
         public string GenerateContentSecurityPolicy()
         {
-            var baseAddress = _environment.BaseAddress;
+            var hostBaseAddress = _environment.BaseAddress;
             var cspDirectives = new System.Collections.Generic.List<string>
             {
                 "default-src 'self'",
-                $"script-src 'self' 'unsafe-inline' {baseAddress}",
-                $"style-src 'self' 'unsafe-inline' {baseAddress}",
-                $"img-src 'self' data: {baseAddress}",
+                $"script-src 'self' 'unsafe-inline' {hostBaseAddress}",
+                $"style-src 'self' 'unsafe-inline' {hostBaseAddress}",
+                $"img-src 'self' data: {hostBaseAddress}",
                 "connect-src 'self'",
                 "font-src 'self'",
                 "object-src 'none'",
@@ -62,24 +62,24 @@ namespace personal_website.Services
         /// </summary>
         /// <param name="input">Input string to sanitize</param>
         /// <returns>Sanitized input</returns>
-        public string SanitizeInput(string input)
+        public static string SanitizeInput(string input)
         {
             if (string.IsNullOrEmpty(input))
                 return input;
 
             // Remove potentially dangerous HTML tags and attributes
-            string sanitized = Regex.Replace(input, @"<[^>]+>", string.Empty);
+            string sanitizedInput = Regex.Replace(input, @"<[^>]+>", string.Empty);
             
             // Remove potential script injection
-            sanitized = Regex.Replace(sanitized, @"<script.*?</script>", string.Empty, RegexOptions.IgnoreCase | RegexOptions.Singleline);
+            sanitizedInput = Regex.Replace(sanitizedInput, @"<script.*?</script>", string.Empty, RegexOptions.IgnoreCase | RegexOptions.Singleline);
             
             // Remove potential event handlers
-            sanitized = Regex.Replace(sanitized, @"on\w+=""[^""]*""", string.Empty, RegexOptions.IgnoreCase);
+            sanitizedInput = Regex.Replace(sanitizedInput, @"on\w+=""[^""]*""", string.Empty, RegexOptions.IgnoreCase);
             
             // Encode special characters
-            sanitized = HtmlEncode(sanitized);
+            sanitizedInput = HtmlEncode(sanitizedInput);
 
-            return sanitized;
+            return sanitizedInput;
         }
 
         /// <summary>
@@ -106,7 +106,7 @@ namespace personal_website.Services
         /// </summary>
         /// <param name="url">URL to validate</param>
         /// <returns>True if URL is safe, false otherwise</returns>
-        public bool IsUrlSafe(string url)
+        public static bool IsUrlSafe(string url)
         {
             if (string.IsNullOrWhiteSpace(url))
                 return false;
@@ -131,7 +131,7 @@ namespace personal_website.Services
         /// </summary>
         /// <param name="length">Length of the token</param>
         /// <returns>Cryptographically secure random token</returns>
-        public string GenerateSecureToken(int length = 32)
+        public static string GenerateSecureToken(int length = 32)
         {
             using var rng = System.Security.Cryptography.RandomNumberGenerator.Create();
             byte[] tokenData = new byte[length];
