@@ -18,6 +18,10 @@ builder.Services.AddScoped<SecurityService>();
 // Configure lazy loading
 builder.Services.AddScoped<LazyAssemblyLoader>();
 
+// Theme Service For Dark Mode
+
+builder.Services.AddScoped<ThemeService>();
+
 try
 {
     var host = builder.Build();

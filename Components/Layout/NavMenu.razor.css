@@ -74,14 +74,13 @@
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    transition: transform 0.3s ease-in-out;
+    transform: translateY(0);
 }
 
 .nav-link {
     color: #495057;
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s ease;
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -116,13 +115,14 @@
         padding: 1rem;
         box-shadow: -2px 0 5px rgba(0,0,0,0.1);
         transform: translateX(0);
-        transition: right 0.3s ease-in-out;
+        right: -100%;
         justify-content: flex-start;
         align-items: flex-start;
     }
-
+    
     .nav-links.menu-open {
         right: 0;
+        transition: right 0.3s ease;
     }
 
     .nav-link {

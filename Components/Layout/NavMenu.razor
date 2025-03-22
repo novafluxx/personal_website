@@ -10,9 +10,15 @@
     {
         isMenuOpen = false;
     }
+
+    [Parameter]
+    public EventCallback ToggleTheme { get; set; }
+
+    [Parameter]
+    public string CurrentTheme { get; set; } = "light";
 }
 
-<div class="nav-container">
+<div class="nav-container" data-bs-theme="@CurrentTheme">
     <div class="mobile-menu-toggle" @onclick="ToggleMenu">
         <i class="fas fa-bars"></i>
     </div>
@@ -30,5 +36,15 @@
         <NavLink class="nav-link" href="contact" @onclick="CloseMenu">
             <i class="fas fa-envelope"></i> Contact
         </NavLink>
+        <a href="javascript:void(0)" class="nav-link theme-toggle" @onclick="ToggleTheme">
+            @if (CurrentTheme == "dark")
+            {
+                <i class="fas fa-sun"></i>
+            }
+            else
+            {
+                <i class="fas fa-moon"></i>
+            }
+        </a>
     </div>
 </div>

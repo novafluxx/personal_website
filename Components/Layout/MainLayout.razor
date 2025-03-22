@@ -1,11 +1,13 @@
 @inherits LayoutComponentBase
+@inject ThemeService ThemeService
+@implements IAsyncDisposable
 
 <CustomHeadContent />
 
-<div class="page-container">
+<div class="page-container theme-sync" data-bs-theme="@_currentTheme">
     <header class="main-header">
         <nav class="navbar">
-            <NavMenu />
+            <NavMenu ToggleTheme="@ToggleTheme" CurrentTheme="@_currentTheme" />
         </nav>
     </header>
 
@@ -19,3 +21,25 @@
         </div>
     </footer>
 </div>
+
+@code {
+    private string _currentTheme = "light";
+
+    protected override async Task OnInitializedAsync()
+    {
+        _currentTheme = await ThemeService.GetTheme();
+        await ThemeService.SetTheme(_currentTheme);
+    }
+
+    private async Task ToggleTheme()
+    {
+        _currentTheme = _currentTheme == "light" ? "dark" : "light";
+        await ThemeService.SetTheme(_currentTheme);
+    }
+
+    public ValueTask DisposeAsync()
+    {
+        // If there's no actual async cleanup needed, return a completed task
+        return ValueTask.CompletedTask;
+    }
+}
