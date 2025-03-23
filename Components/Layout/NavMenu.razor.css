@@ -111,18 +111,18 @@
         width: 250px;
         height: calc(100vh - 3.5rem);
         flex-direction: column;
-        background-color: white;
+        background-color: var(--card-bg, white);
+        color: var(--text-color);
         padding: 1rem;
         box-shadow: -2px 0 5px rgba(0,0,0,0.1);
         transform: translateX(0);
-        right: -100%;
         justify-content: flex-start;
         align-items: flex-start;
+        transition: right 0.3s ease, background-color 0.3s ease, color 0.3s ease;
     }
     
     .nav-links.menu-open {
         right: 0;
-        transition: right 0.3s ease;
     }
 
     .nav-link {
