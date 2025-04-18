@@ -8,7 +8,6 @@ This repository contains the source code for my personal website built using Bla
 ## Features
 - Responsive Design: Adapts to various screen sizes.
 - Experience Page: Showcases projects and professional background.
-- Contact Form: Enables visitors to send messages.
 - Security Best Practices: Implements HTTP security headers, Content Security Policy, and input sanitization.
 - Dark Mode Toggle: Uses `ThemeService` for theme switching.
 
@@ -17,11 +16,6 @@ This repository contains the source code for my personal website built using Bla
 ### Prerequisites
 - [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
 - Blazor WebAssembly Tools
-
-### Running the Project
-1. Clone the repository.
-2. Navigate to the project directory.
-3. Run `dotnet run` to launch the website.
 
 ## Project Structure
 - `personal_website.sln`: Visual Studio Solution file.
