@@ -1,9 +1,10 @@
 @using personal_website.Components.Layout
 @using Microsoft.AspNetCore.Components.WebAssembly.Services
 @using personal_website.Services
+@using System.Reflection
 @inject SecurityService SecurityService
 
-<Router AppAssembly="@typeof(Program).Assembly" OnNavigateAsync="@OnNavigateAsync">
+<Router AppAssembly="@typeof(Program).Assembly" AdditionalAssemblies="@lazyLoadedAssemblies" OnNavigateAsync="@OnNavigateAsync">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
@@ -19,6 +20,7 @@
 @code {
     [Inject]
     private LazyAssemblyLoader? AssemblyLoader { get; set; }
+    private List<Assembly> lazyLoadedAssemblies = new();
 
     private async Task OnNavigateAsync(NavigationContext args)
     {
@@ -28,26 +30,35 @@
             return;
         }
 
-        // Sanitize navigation path
         var sanitizedPath = SecurityService.SanitizeInput(args.Path);
 
         try
         {
-            // Validate URL before navigation
             if (!SecurityService.IsUrlSafe(sanitizedPath))
             {
                 Console.WriteLine($"Potentially unsafe navigation attempt: {sanitizedPath}");
                 return;
             }
 
-            // Load assemblies based on route
-            if (sanitizedPath.StartsWith("aviation"))
+            var assembliesToLoad = new List<string>();
+
+            if (sanitizedPath.Contains("aviation"))
             {
-                await AssemblyLoader.LoadAssembliesAsync(new[] { "Aviation.dll" });
+                assembliesToLoad.Add("personal_website.Components.Pages.Aviation.dll");
             }
-            else if (sanitizedPath.StartsWith("experience"))
+            if (sanitizedPath.Contains("experience"))
             {
-                await AssemblyLoader.LoadAssembliesAsync(new[] { "Experience.dll" });
+                assembliesToLoad.Add("personal_website.Components.Pages.Experience.dll");
+            }
+            if (sanitizedPath.Contains("contact"))
+            {
+                assembliesToLoad.Add("personal_website.Components.Pages.Contact.dll");
+            }
+
+            if (assembliesToLoad.Any())
+            {
+                var assemblies = await AssemblyLoader.LoadAssembliesAsync(assembliesToLoad);
+                lazyLoadedAssemblies.AddRange(assemblies);
             }
         }
         catch (Exception ex)

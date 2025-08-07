@@ -19,4 +19,12 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="9.0.0" PrivateAssets="all" />
   </ItemGroup>
 
+  
+
+  <ItemGroup>
+    <ProjectReference Include="Libraries\personal_website.Components.Pages.Aviation\personal_website.Components.Pages.Aviation.csproj" />
+    <ProjectReference Include="Libraries\personal_website.Components.Pages.Experience\personal_website.Components.Pages.Experience.csproj" />
+    <ProjectReference Include="Libraries\personal_website.Components.Pages.Contact\personal_website.Components.Pages.Contact.csproj" />
+  </ItemGroup>
+
 </Project>
